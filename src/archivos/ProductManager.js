@@ -32,7 +32,7 @@ export default class ProductManager {
     getProductsById = async (id) => {
         
         let prodId = await this.exist(id)
-        if (!prodId) return "Produnto ne encontrado"
+        if (!prodId) return "Producto no encontrado"
         return (prodId)
     }
 
