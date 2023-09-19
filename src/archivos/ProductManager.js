@@ -36,6 +36,15 @@ export default class ProductManager {
         return (prodId)
     }
 
+    getProductsLimit = async (limit) => {
+        const products = await this.readProducts()
+        const productsList =[]
+        for (let i = 0; 1 < limit; i++) {
+            productsList.push (products[i])
+        } 
+        return productsList()
+    }
+
     exist = async (id)=>{
         let product = await this.readProducts()
         return product.find(prod => prod.id === id)

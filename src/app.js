@@ -9,7 +9,7 @@ const PORT = 8000
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.use("/api/products", ProductRouter)
+app.use("/api/product", ProductRouter)
 app.use("/api/carts", CartsRouter)
 
 

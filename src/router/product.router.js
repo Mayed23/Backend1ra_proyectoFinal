@@ -8,6 +8,10 @@ const product = new ProductManager()
 
 
 ProductRouter.get("/", async (req, res) =>{
+    const limit = req.query.limit
+    if (limit){
+        return res.send(await product.getProductsLimit(limit))
+    }
     res.send(await product.getProducts())
 })
 
