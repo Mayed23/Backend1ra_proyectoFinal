@@ -34,7 +34,7 @@ socketServer.on("connection", socket => {
         console.log(data)
     })
 
-    socket.on("newProd", (newProduct) => {
+    socket.on("newProduct", (newProduct) => {
         product.addProducts(newProduct)
         socketServer.emit("success", "Producto Agregado Correctamente");
     });
