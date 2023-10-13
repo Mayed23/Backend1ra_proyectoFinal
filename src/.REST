@@ -1,0 +1,46 @@
+GET http://localhost:8000/api/users
+
+###
+GET http://localhost:8000/api/carts
+
+###
+GET http://localhost:8000/api/product
+
+###
+POST http://localhost:8000/api/product
+Content-Type: application/json
+
+{
+    "name":"Kit Bomba de Gasolina",
+    "model":"Aveo",
+    "price":15,
+    "img":"img2",
+    "code":"1230",
+    "category":"1",
+    "stock":"15" 
+}
+
+###
+POST http://localhost:8000/api/product
+Content-Type: application/json
+
+{
+    
+    "model":"Aveo",
+    "price":15,
+    "img":"img2",
+    "code":"1230",
+    "category":"1",
+    "stock":"15" 
+}
+
+###
+POST http://localhost:8000/api/carts
+Content-Type: application/json
+
+{
+    "products": "65277808a1dc6e3ce63be270", 
+    "quantity": 30,
+    "total": 200
+
+}

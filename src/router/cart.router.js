@@ -1,16 +1,17 @@
 import { Router } from "express";
-import CartsManager from "../archivos/CartsManager.js";
-
+import cartsMongoManager from "../Dao/Mongo/cartsMongoManager.js";
 
 const CartsRouter = Router()
-const carts = new CartsManager
+const carts = new cartsMongoManager
 
 CartsRouter.post("/", async (req,res) => {
-    res.send(await carts.addCarts())
+    let cartNew = req, body
+    res.send(await carts.addCarts(cartNew))
+    
 })
 
 CartsRouter.get("/", async (req, res)=>{
-    res.send (await carts.readCarts())
+    res.send (await carts.getCarts())
 })
 
 CartsRouter.get("/:id", async (req, res)=>{

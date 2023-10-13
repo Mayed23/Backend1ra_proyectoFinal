@@ -2,23 +2,33 @@ import  express from "express"
 import { engine } from "express-handlebars"
 import { Server } from "socket.io"
 import * as path from "path"
-import __dirname from "./utils.js"
-import ProductManager from "./archivos/ProductManager.js"
+import __dirname from "./utils/utils.js"
 
-import ProductRouter from "./router/product.router.js"
-import CartsRouter from "./router/cart.router.js"
-
+import connectDb from "./config/config.js"
+import router from "./router/index.js"
+import viewsRouter from "./router/views.router.js"
 
 const app = express()
 const PORT = 8000
 
-const product = new ProductManager()
+const routerApp = router
+
+app.use(routerApp)
+
+
+
+
+//conección a mi base de datos compass cambio a integracion
+// link de mongo en carpeta config
+
+connectDb () 
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.use("/api/product", ProductRouter)
-app.use("/api/carts", CartsRouter)
+
+app.set(`/`, viewsRouter)
+
 
 //Validor conexión
 const httpServer = app.listen(PORT, () =>{
@@ -43,9 +53,6 @@ socketServer.on("connection", socket => {
 
 })
 
-
-
-
 //Handlebars
 app.engine("handlebars", engine())
 app.set("view engine", "handlebars")
@@ -54,18 +61,8 @@ app.set("views", path.resolve(__dirname + "/views"))
 //CSS Static
 app.use("/", express.static(__dirname + "/public"))
 
-//Socket View
-app.use("/realtimeproducts", ProductRouter)
 
-//Handelbars View
-app.get("/", async (req, res) => {
-    let allProducts  = await product.getProducts()
-    res.render("home", {
-        title: "Handlebars",
-        products : allProducts
-    })
-})
 
-//Se simplifica codigo de middleware colocando lo siguiente
-// app.use("/api/products", ProductRouter)
-// app.use("/api/carts", CartRouter)
+
+
+
