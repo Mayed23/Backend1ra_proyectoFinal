@@ -1,3 +1,5 @@
+
+
 const socketClient=io()
 const nombreUsuario=document.getElementById("nombreusuario")
 const formulario=document.getElementById("formulario")

@@ -1,37 +1,38 @@
 import  { Router } from "express"
 import productModel from "../Dao/Mongo/models/products.model.js"
-// //import { messageManagerMongo } from "../Dao//Mongo/messageMongoManager.js"
+import messageModel from "../Dao/Mongo/models/message.model.js"
+import  uploader  from "../utils/multer.js"
 
-
-// const router = Router()
+ 
+ const router = Router()
 
 // router.get(`/subirarch`, (req, res) => {
 //     res.render(`subirArch`)
 // })
 
-// //router.post(`/subirarch`, uploader.single(`file`), (req, res) =>{
-//     //if(!req.file) return res.status(400).send({status: `error`, error: `No se pudo guardar la Imagen`})
+// router.post(`/subirarch`, uploader.single(`file`), (req, res) =>{
+//     if(!req.file) return res.status(400).send({status: `error`, error: `No se pudo guardar la Imagen`})
 
-//     //res.send({status: `success`, payload: `Archivo subido con Éxito`})
-
-
-
-//  router.get(`/message`, (req, res) => {
-//     res.render(`message`)
-//  })
-
-//  router.post(`/message`, uploader.single(`file`), (req, res) =>{
-//     if(!req.file) return res.status(400).send({status: `error`, error: `No se pudo enviar el mensaje`})
-//     res.send({status: `success`, payload: `mensaje enviado`})
+//     res.send({status: `success`, payload: `Archivo subido con Éxito`})
 
 
-// })
+
+ router.get(`/message`, (req, res) => {
+    res.render(`message`)
+ })
+
+ router.post(`/message`, uploader.single(`file`), (req, res) =>{
+    if(!req.file) return res.status(400).send({status: `error`, error: `No se pudo enviar el mensaje`})
+    res.send({status: `success`, payload: `mensaje enviado`})
+
+
+})
 
 
 
 const viewsRouter = Router()
 
-//const product = new productsMongoManager()
+// //const product = new productsMongoManager()
 
 
 //Socket View
@@ -76,10 +77,9 @@ viewsRouter.get("/products",  async (req, res)=>{
 
 
 
-
-
-
-
-
-
 export default viewsRouter
+
+
+
+
+

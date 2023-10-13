@@ -1,8 +1,6 @@
-import { Schema, model } from "mongoose"
+import { Schema, model } from "mongoose";
 
-
-const collection =  `messages`
-
+const collection = `messages`
 
 const messageSchema = new Schema({
     user: {
@@ -15,8 +13,10 @@ const messageSchema = new Schema({
         max: 100,
         required: true
     }
+
 })
 
-const messageModel =  model(collection, messageSchema)
+const messageModel = model (collection, messageSchema)
+
 
 export default messageModel

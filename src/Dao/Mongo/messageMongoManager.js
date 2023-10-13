@@ -1,8 +1,8 @@
-import messageModel from "../Mongo/models/message.model.js"
+import messageModel from "./models/message.model.js"
 
-export default class messageManagerMongo {
+class messageMongoManager {
     constructor(){
-        this.model=messageModel
+        this.model = messageModel
     }
 
     async getMessages(){
@@ -24,3 +24,4 @@ export default class messageManagerMongo {
 
 }
 
+export default messageMongoManager
