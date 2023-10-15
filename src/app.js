@@ -1,17 +1,16 @@
 import  express from "express"
+
 import { engine } from "express-handlebars"
 import { Server } from "socket.io"
 import * as path from "path"
-import __dirname from "./utils/utils.js"
+import __dirname from "./publico/utils/utils.js"
 
 import connectDb from "./config/config.js"
-import router from "./router/index.js"
-import viewsRouter from "./router/views.router.js"
+import routerApp from "./router/index.js"
+
 
 const app = express()
 const PORT = 8000
-
-const routerApp = router
 
 app.use(routerApp)
 
@@ -27,8 +26,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 
-app.set(`/`, viewsRouter)
-
 
 //Validor conexión
 const httpServer = app.listen(PORT, () =>{
@@ -37,21 +34,21 @@ const httpServer = app.listen(PORT, () =>{
 
 const socketServer = new Server (httpServer)
 
-socketServer.on("connection", socket => {
-    console.log("Nuevo Cliente Conectado")
-//Recibe Info
-    socket.on("message", data => {
-        console.log(data)
-    })
+// socketServer.on("connection", socket => {
+//     console.log("Nuevo Cliente Conectado")
+// //Recibe Info
+//     socket.on("message", data => {
+//         console.log(data)
+//     })
 
-    socket.on("newProduct", (newProduct) => {
-        product.addProducts(newProduct)
-        socketServer.emit("success", "Producto Agregado Correctamente");
-    });
-//Envia Info
-    socket.emit("test","mensaje desde servidor a cliente, se valida en consola de navegador")
+//     socket.on("newProduct", (newProduct) => {
+//         product.addProducts(newProduct)
+//         socketServer.emit("success", "Producto Agregado Correctamente");
+//     });
+// //Envia Info
+//     socket.emit("test","mensaje desde servidor a cliente, se valida en consola de navegador")
 
-})
+// })
 
 //Handlebars
 app.engine("handlebars", engine())

@@ -18,9 +18,12 @@ CartsRouter.get("/:id", async (req, res)=>{
     res.send (await carts.getCartsById(req.params.id))
 })
 
-CartsRouter.post("/cid/products/pid", async (req, res)=>{
-    let cartsId = req.params.cid
-    let prodId = req.params.pid
-    res.send(await carts.addToCarts(cartsId,prodId))
+CartsRouter.post("/:cid/product/:pid", async (req, res)=>{
+
+    const carId = req.params.cid
+    const prodId = req.params.pid
+    res.send (await carts.addToCarts(carId,prodId))
+
 })
+
 export default CartsRouter

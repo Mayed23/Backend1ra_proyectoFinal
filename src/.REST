@@ -44,3 +44,14 @@ Content-Type: application/json
     "total": 200
 
 }
+
+###
+GET http://localhost:8000/api/carts
+
+###
+GET http://localhost:8000/api/carts/652b38838ce5f2bfeb86cb28
+
+###
+POST  http://localhost:8000/api/carts/652b381c8ce5f2bfeb86cb25/products/6527773e5cbe95d2d757605d
+Content-Type: application/json
+

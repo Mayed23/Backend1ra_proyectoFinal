@@ -47,10 +47,15 @@ export default class productsMongoManager {
     getProductsById = async (id) => {
 
         try{
-            const prodId = await this.model.find({id})
+            console.log(id)
+            const prodId = await this.model.findById(id)
+            
+            console.log(prodId)
+            
             if (!prodId){
                  return "Producto no encontrado"
             }
+            
             return prodId
         }catch (error){
             return `Id, no existe.`

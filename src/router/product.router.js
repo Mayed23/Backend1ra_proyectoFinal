@@ -11,23 +11,24 @@ ProductRouter.get("/", async (req, res) => {
 })  
 
 
-ProductRouter.get(`/page`, async (req, res) => {
+ProductRouter.get("/page", async (req, res) => {
     res.send(await product.getProductsPage())
 })  
 
 
-ProductRouter.get("/:limit", async (req, res) =>{
-    const limit = req.query.limit
-    if (limit <= 0){
-        limit = 0
+// ProductRouter.get("/:limit", async (req, res) =>{
+//     const limit = req.query.limit
+//     if (limit <= 0){
+//         limit = 0
         
-    }
-    return res.send(await product.getProductsLimit({limit}))
-})
+//     }
+//     return res.send(await product.getProductsLimit({limit}))
+// })
 
 ProductRouter.get("/:id", async (req, res) =>{
     try{
         let id = req.params.id
+        console.log('Route', id)
         res.send(await product.getProductsById(id))
     }catch(error){
         console.log(`Id no encontrado`)
